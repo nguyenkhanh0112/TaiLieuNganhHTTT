@@ -1,0 +1,93 @@
+private void luu_Click(object sender, EventArgs e)
+        {
+            //B1: lấy data từ Ctrl
+            string p_masv = masinhvien.Text.Trim();
+            string p_hoten = hovaten.Text.Trim();
+            int p_giotinh;
+            if (gioitinh.SelectedItem.ToString() == "Nam")
+                p_giotinh = 1;
+            else
+                p_giotinh = 0;
+
+            DateTime p_ngaysinh = ngaysinh.Value;
+            string p_malop = cblop.SelectedValue.ToString();
+            string p_cccd = cccdcmt.Text.Trim();
+            string p_phone = Sodienthoai.Text.Trim();  
+            string p_quequan = quequan.Text.Trim();
+            //B1: connect database
+
+            if (con.State == ConnectionState.Closed)
+                con.Open();
+
+            //B3: tạo đối tượng command để truy vấn 
+            SqlCommand cmd = new SqlCommand("sinhvien_ins", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Masv", SqlDbType.NVarChar, 50).Value = p_masv;
+            cmd.Parameters.Add("@Hoten", SqlDbType.NVarChar, 50).Value = p_hoten ;
+            cmd.Parameters.Add("@Gioitinh ", SqlDbType.Bit).Value = p_giotinh;
+            cmd.Parameters.Add("@Ngaysinh", SqlDbType.NVarChar, 50).Value = p_ngaysinh;
+            cmd.Parameters.Add("@Malop", SqlDbType.NVarChar, 50).Value = p_malop;
+            cmd.Parameters.Add("@Quequan", SqlDbType.NVarChar, 50).Value = p_quequan;
+            cmd.Parameters.Add("@Dienthoai", SqlDbType.NVarChar, 50).Value = p_phone;
+            cmd.Parameters.Add("@CCCD", SqlDbType.NVarChar, 50).Value = p_cccd;
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+            Load_grvSinhvien();
+            MessageBox.Show("Thêm mới thành công ");
+        }
+		
+		
+		
+		private void Load_cblop()
+        {
+            //b1: kết nốt đến DB
+            if(con.State!= ConnectionState.Open)
+            {
+                con.Open();
+            }
+            //b2: tạo đối tượng command đẻ lấy dl trong bang lop 
+            SqlCommand cmd = new SqlCommand("select * from Lop ",con);
+            //b3: tạo đối tương dataAdater
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            sqlDataAdapter.SelectCommand = cmd;
+            //b4: tạo đối đượng databale
+            DataTable dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+            cmd.Dispose();
+            con.Close();
+            // chèn thêm một dòng vào vị trí đầu tiên của table 
+            DataRow dataRow = dataTable.NewRow();
+            dataRow["Malop"] = "";
+            dataRow["Tenlop"] = "---Chọn Lớp---";
+            dataTable.Rows.InsertAt(dataRow,0);
+            //b5 đổ dữ liệu từ tb lên combobox
+            cblop.DataSource = dataTable;
+            cblop.DisplayMember = "Tenlop";
+            cblop.ValueMember = "Malop";
+        }
+		
+		 private void Load_grvSinhvien()
+        {
+            //b1: kết nốt đến DB
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            //b2: tạo đối tượng command đẻ lấy dl trong bang lop 
+            SqlCommand cmd = new SqlCommand("select * from Sinhvien ", con);
+            //b3: tạo đối tương dataAdater
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            sqlDataAdapter.SelectCommand = cmd;
+            //b4: tạo đối đượng databale
+            DataTable dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+            cmd.Dispose();
+            con.Close();
+        
+            
+            //b5 đổ dữ liệu từ tb lên combobox
+            dataGridView1.DataSource = dataTable;
+            dataGridView1.Refresh();
+            
+        }

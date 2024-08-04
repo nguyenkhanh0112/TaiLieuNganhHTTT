@@ -1,0 +1,175 @@
+
+I. Các lệnh cơ bản trong ubunutu
+=> các lệnh hay sử dụng
+1. pwd: tìm đường dẫn của thư mục bạn đang làm việc
+2. Cd: chuyển hướng trong hệ thống tập tin
+
+-vd: cd/home/nguyenkhanh
+-các options:
+	+cd.. :di chuyển lên 1 cấp thư mục trên
+	+cd   :di chuyển đếm thư mục home
+	+cd/  :di chuyển đến thưu mục root(/)
+	+cd-  :di chuyển đến thư mục bạn ở trước đó
+		*chú ý đường dẫn tương đối và tuyệt đối
+3.ls: xem nội dung của thư mục 
+	- các options:
+		+ls -R: liệt kê các file và thư mục con bên trong
+		+ls -l: hiển thị thông tin chi tiết của các file
+		+ls -al: hiển thị thông tin chi tết của các file và các file ẩn 
+		+ls -a: liệt kê các file ẩn
+4. file cấu hình run level
+	dùng lệnh init + runlevel muốn sử dụng 
+		Runlevel 0: Level Shutdown hệ thống
+		Runlevel 1:level dùng cho 1 người sử dụng nhưng chỉ giao tiếp dạng text(không có giao diện)
+		Runlevel 2: không sử dụng
+		Runlevel 3:Level dùng cho nhiều người dùng nhưng chỉ giao tiếp dạng text(không có giao diện)
+		Runlevel 4: không sử dụng
+		Runlevel 5: level dùng cho nhiều người dùng và được cung cấp giao diện đồ họa.
+		Runlevel 6:level Reboot hệ thống
+			*chú ý: neews sử dụng không đồ họa mà chuyển về trường hợp "permission denied"
+				thì ta sử dụng lệnh "sudo init 5"
+6. tìm kiếm câu lệnh để sử dụng 
+	apropos + " mô tả chức năng câu lệnh"
+	
+II.Các thao tác tạo,xóa, copy,move,đổi tên file,thư mục Ubuntu
+	1. MKDIR/TOUCH(tạo mới về directory và tạo mới về file)
+	- creat a new diretory:
+		+Sysntax: mkdir<dir_name>
+	- make multible diretories
+		+Sysntax: mkdir<dir_name1> <dir_name2>
+	-mkdir options:
+		+mkdir -p: Add directory including its sub directory(thêm thư mục bao gồm thư mục con của nó).
+		+mkdir -v: print amessage for each created directory(thông báo cho mỗi thư mục đã tạo).
+	2.REMOVE DIRECTORY
+		+rmdir:xóa một thư mục trống (this command deletes an empty a directory).
+		+rm command: lệnh xóa một thư mục bao gồm cả thư mục con(this command deletes a directory including its subdirectory).
+		rm -r:xóa một thư mục trống và tất cả nội dung của nó  (Delete anon- empty directory and all of its contents).
+	*chú ý: lệnh rm dùng để xóa file;
+	3. Copy Directory
+	- sysntax: cp<souce><destination>
+	-cp options:
+		+cp-a: bảo tồn các thuộc tính chỉ định(preserve the specified attributes).
+		+cp-r: sao chép thư mục theo cách đệ quy(Copy directories recursively).
+		* chú ý(đưa và đường dẫn tuyệt đối): cd <đường dẫn> <điểm đến>
+	4.MOVE FILE/DIRECTORY
+		-sysntax: mv<souce><destination>
+		
+III.Trình soạn thảo văn bản 
+	-vi<file_name>:tạo 1 file văn bản mới, mở nếu nó tồn tại 
+	-chia làm hai chế độ
+		+ chế độ soạn thảo văn bản(insert Mode):nhấn i
+		+ chế độ lệnh(command Mode) : nhấn ESC
+	thoát
+		+ thoát + không lưu :q!
+		+ thoát + lưu: 		:wq!
+	tìm kiếm : /search n:next
+	thay thế: s:/srearch/replace/g
+	đọc file
+	- view <tên file> (lệnh chỉ đọc)
+	-cat <tên file> (hiển thị nội dung của một file văn bản).
+	-more<tên file> (hiển thị nội dung của file văn bản.Nhấn phím cách để di chuyển đến từng đoạn bổ sung).
+	-less<tên file) (hiển thị nội dung của file văn bản,nhưng cho phép quay chở lại bằng phím mũi tên lên trên).
+	-file <tên file> (xác định các file theo lại(ví dụ: văn bản ,ASCII,file thực thi,hình ảnh,thư muc).
+	*cat >(văn bản ) (ctrl + D) (dùng để soạn thảo)
+IV. User and Group
+	1.User
+		- có 2 loại user:
+			+user hệ thống (thực thi các module,scrip cần thiết phục vụ cho HĐH)
+			+user người dùng(login để sử dung HĐH,gồm super user và regular user).
+	Đặc điểm của user:
+		- tên mỗi user là duy nhất , chỉ có thể đặt tên chữ thường,chữ hoa
+		- user có username và password 
+		-mỗi user có một mã định danh duy nhất(uid)
+		-mỗi user có thể thuộc về nhiều nhóm(gid)
+		-tài khoản superuser có uid = gid =0
+	File/etc/passwd
+	 cột 1: tên user
+	 cột 2: mk đã được mã hõa của user
+	 cột 3 user ID
+	 cột 4: group ID
+	 cột 5: tên mô tả người sử dụng(Comment)
+	 cột 6: thư mục home của user.
+	 cột 7: Shell sẽ hoạt động sau khi user login, thường lafbin/bash.
+	 File/etc/shadown //chỉ có root mới đọc được file này 
+	Tạo User: -> nhớ đặt password sau khi add 
+			Cú pháp: #useradd[option]<username>
+			-c"Thông tin người dùng"
+			-d<thư mục cá nhân>
+			-m: tạo thư mục các nhân nếu chưa tồn tại
+			-g<nhóm của người dùng>
+		Ví dụ: #useradd -c"Nguyen Van Khanh -ServerAdmin" -g serveradmin vana
+	Thay đổi thông tin cá nhân:
+		Cú pháp: #usermod[option] <username>
+		những option tương tự Useradd
+		ví dụ: #usermod -g kinhdoanh vân //chuyển vana từ nhóm server admin sáng nhóm kinh doanh.
+	Xóa người dùng 
+		Cú pháp: #userdel[option] <username>
+	Khóa/ Mở khóa người dùng
+		passwd -l<username> /passwd -u<username>
+		usermod -L<username>/ usetmod -U<username>
+		trong /etc/shadow có thể khóa tài khoản bằng cách thay từ khóa x bằng từ khóa*
+	
+	2.Group
+		-nhóm là tập hợp cửa nhiều user. mỗi nhóm có tên duy nhất, và có một mã định danh duy nhất(gid).
+		-khi tạo user(không dùng option -g) thì mặc định một group được tạo ra .
+		* các user có thể đọc được các file này tuy nhiên có root mới thay đổi được .
+	Tạo nhóm :
+		Cú pháp: #groupadd<groupname>
+	Xóa nhóm:
+		cú pháp: #groupdel<groupname>
+	Chỉnh sửa:
+			#groupmod:
+		Sửa gid của nhóm user thành 201
+		#group -g 201 ưsers
+		đổi tên nhóm accounting thành accountant
+		#groupmod -n acccountant accounting
+V.Lệnh find, grep & Phân quyền trong ubuntu
+	1.Find
+		find[path][expression]
+		+ $ find / -name "*.txt" # tìm file có kiểu txt trong thư mục /
+		+ $ find /usr/local -type f -print:chỉ tìm file	
+		+ $ find /usr/X11R6 -type d: chỉ tìm thư mục
+		+ $ find.-perm 755 -a -type f: tìm theo permission
+		2.Grep
+		+tìm kiếm nội dung cú pháp:
+			grep[OPTION] PATTERN[FILE]
+			-i:không phân biệt hoa thường 
+			-n:kèm theo số thứ tự dòng khi xuất
+			-r:tìm lặp lại trong thư mục con 
+			-v:tìm nghịch dảo
+			-w: tìm nguyên tử 
+		ví dụ:
+		grep root/etc/passwd :tìm những dòng có từ root trong file /etc/passwd
+		ls -l/etc/|grep conf: tìm những file có cụm tù conf trong thư mục etc
+	2.Phân Quyền 
+		-có 3 dạng dối tượng:
+			 + Owner(người sở hữu).
+			 + Group owner(nhóm sở hữu).
+			 + Other users(những người khác).
+		-Quyền hạn:(nếu dúng số thì quyền hạn có tổ hợp thì 0-7)
+			+ Read-r-4 :cho phép đọc nội dung.
+			+ Write-W-2 :dùng để tạo,thay đổi hay xóa.
+			+Execute-x-1 :thực thi chương trình
+		-> Dùng lệnh ls-l để xem chi tiết các file,thư mục
+	lệnh thực thi:
+		- lệnh Chmod :dùng để cấp quyền hạn.
+		+Cú pháp :#chmod <specification><file>
+		+Ví dụ: #chmod 644 baitap.txt // cấp quyền cho owner có thể ghi các nhóm các chỉ có quyền dọc với file taptin.txt
+		* chrmod u=rw g=r text.txt chmod u+w text.txt chmode g-w text.txt
+		-lệnh Chown: dùng để thay đổi người sở hữu.
+			+ cú pháp: #chown<owner> <filename>
+		-lệnh Chgrp: dùng thay đổi nhóm sở hữu.
+			+ cú pháp: #chgrp<group><filename>
+VI. SHELL SCRIPTING
+	-Sell là chương trình giao tiếp với người dùng. Có nghĩa là shell chấp nhận các lệnh từ bạn(keyboard) và thực thi nó .
+	Nhưng nếu bạn muốn sử dụng nhiều lệnh chỉ bằng một lệnh, thì bạn có thể lưu chuỗi lệnh vào text file và bảo shell thực thi
+	text file này thay vì nhập vào các lệnh. Điều này gọi là shell script.
+	
+	-Định nghĩa : Shell script là một chuỗi các lệnh được viết trong plain text file.
+	-tại sao phải viết shell script:
+		+ shell script có thể nhận input từ user ,file hoặc output từ màn hình 
+		+ tiện lợi để tạo nhóm lệnh riêng.
+		+ tiết kiện thời gian .
+		+ tự động làm một vài công việc thường xuyên.
+		
+	

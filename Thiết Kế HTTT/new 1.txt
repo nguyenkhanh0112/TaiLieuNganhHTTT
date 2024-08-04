@@ -1,0 +1,65 @@
+ 1.hãy nêu mục đích và thành phần của biểu đồ uc tổng quát , cách đặt tên các uc 
+
+Mục đích của biểu đồ Use Case (UC) tổng quát là mô tả các chức năng hoặc hành vi chính của hệ thống từ góc nhìn của người dùng. 
+Nó tập trung vào mô tả các use case chính và các tương tác giữa người dùng và hệ thống.
+
+Biểu đồ Use Case tổng quát bao gồm các thành phần sau:
+
+1. Use Case (UC): Đại diện cho một chức năng hoặc một tác vụ mà hệ thống cung cấp cho người dùng. Mỗi use case đại diện cho một tác vụ cụ thể mà người dùng có thể thực hiện.
+
+2. Actor: Đại diện cho các đối tượng bên ngoài tương tác với hệ thống. Actor có thể là người dùng, hệ thống khác, hoặc bất kỳ đối tượng nào có vai trò tương tác với hệ thống.
+
+3. Mối quan hệ Actor-Use Case: Biểu thị mối quan hệ giữa các actor và use case. Mỗi use case có thể có nhiều actor liên quan, và mỗi actor có thể liên quan đến nhiều use case.
+
+4. Tiêu đề: Được sử dụng để đặt tên cho biểu đồ Use Case tổng quát và mô tả tổng quan về mục đích chung của hệ thống.
+
+Biểu đồ Use Case tổng quát giúp tạo ra một cái nhìn tổng quan về các chức năng chính của hệ thống và cung cấp một cơ sở để hiểu và trình bày yêu cầu của người dùng đối với hệ thống. Nó cũng hỗ trợ trong việc thiết kế hệ thống và xác định phạm vi dự án.
+Cách đặt tên của uc : thường là động từ + danh từ 
+
+  2. trong biểu đồ uc có bn mỗi liên hệ 
+- 3 mỗi liên hệ 
+	uc vs uc 
+	actor vs actor
+	
+	3. sự khác nhau giữa include vs extend 
+	include là mỗi quan hệ bắt buộc phải có ,nếu mình thực hiện uc1 thì uc2 sẽ kéo theo hoặc mình phải thực hiện uc2 trước mới thực hiện được uc1
+	
+	extend là mỗi quan hệ mở rộng giữa các uc với nhau 
+	vd uc2 là extend của uc1 thì uc2 chỉ xảy ra trong một hoàn cảnh cụ thể nào đó 
+3. nêu cách tìm tác nhân và uc của hệ thông 
+	3.1 cách tìm tác nhân của hệ thống 
+		qua quá trình khảo sát ,phân tích ta sẽ tìm được các tác nhân thông qua các câu hỏi :
+			+ Ai đang sử dụng hệ thống ,hay nhóm người nào yêu cầu hệ thống làm việc giúp họ
+			+ nhóm người nào sẽ kích hoạt hệ thống 
+			+ nhóm người nào sẽ duy trì và quản trị hệ thống hoạt đông
+			+ hệ thống tương tác với các thiết bị hay phần mềm nào khác hay không 
+	3.2 cách tìm các use case của hệ thống 
+		- đối với các tác nhân tim được 
+			+ các tác nhân yêu cầu gì từ hệ thống 
+			+ các công việc chính mà tác nhân đó muốn hệ thống đó thực thi 
+			+ tác nhân đó có thay đổi gì cho hệ thống 
+			+ tác nhân đó phải có thông báo gì cho hệ thống 
+			+ tác nhân đó có cần thông tin thông báo gì từ hệ thống 
+			
+4. Mục đích của biểu đồ trình tự và các thành phần chính của nó 
+Mục đích của biểu đồ trình tự (sequence diagram) là mô tả tương tác giữa các đối tượng trong một hệ thống hoặc quá trình. 
+Nó giúp hiển thị trình tự thực hiện các hoạt động và tương tác giữa các đối tượng trong một kịch bản cụ thể. 
+
+Các thành phần chính của biểu đồ trình tự bao gồm:
+
+1. Các đối tượng tham gia tương tác : lớp thực thể (lớp CSDL), lớp control(lớp điều khiển) ,lớp biên (cầu lỗi giao tiếp giữa giao diện và những thứ bên ngoài hệ thống)
+2. Đường sống và thời gian hoạt động
+3. Thông điệp : sự giao tiếp một chiều giữa hai đối tượng 
+4. khung tương tác : biểu diễn các điều kiện , vòng lặp , các tùy chọn 
+5 cách xây dựng của biểu đồ trình tự 
+	1. xác định uc cần thiết kế
+	2. xem đặc tả của uc được chọn 
+	3. đối chiếu với biểu đồ lớp 
+	4. vẽ biểu đồ trình tự 
+	5. kiểm tra và cập nhập bản vẽ lớp 
+6. hãy nêu mục đích của biểu đồ hoạt động
+- mô tả và trình bày các hoạt động quy trình và luồng công việc trong hệ thống hoặc quá trình cụ thể 
+
+	
+	
+
